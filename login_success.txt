@@ -1,0 +1,27 @@
+*** Settings ***
+Library    Selenium2Library
+
+*** Variables ***
+
+*** Testcases ***
+Loing Successful
+	Open Browser to Localhost
+	Enter User and Password
+	Login Completed
+	Maximize Window
+
+*** Keywords ***
+Open Browser to Localhost
+	Open Browser    localhost:7272/html
+
+Enter User and Password
+	Input Text    username_field    demo
+	Input Text    password_field    mode
+	Click Button    login_button  
+
+Login Completed
+	Element Should Contain    container    Welcome Page
+	Page Should Contain Link  //*[@id="container"]/p/a   
+
+Maximize Window
+	Maximize Browser Window

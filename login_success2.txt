@@ -1,0 +1,45 @@
+*** Settings ***
+Library          Selenium2Library
+Test Setup       Open login page
+Test Teardown    Close Browser
+Resource		 resources/login.txt
+
+
+*** Testcases ***
+Valid Login
+	Fill in user name and password
+	Submit
+	Welcome page is shown
+
+#Valid Login2
+#	Fill in user name and password
+
+#Loing Successful
+#	Open Browser to Localhost
+#	Enter User and Password
+#	Login Completed
+
+*** Keywords ***
+
+Fill in user name and password
+	Input Text    username_field    demo
+	Input Text    password_field    mode
+
+Welcome page is shown
+	Element Should Contain    container    Welcome Page
+	Page Should Contain Link  //*[@id="container"]/p/a   
+
+#Open Browser to Localhost
+#	Open Browser    localhost:7272/html
+#
+#Enter User and Password
+#	Input Text    username_field    demo
+#	Input Text    password_field    mode
+#	Click Button    login_button  
+
+#Login Completed
+#	Element Should Contain    container    Welcome Page
+#	Page Should Contain Link  //*[@id="container"]/p/a   
+
+#Maximize Window
+#	Maximize Browser Window

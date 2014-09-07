@@ -1,0 +1,19 @@
+*** Settings ***
+Documentation    Reuse keywords and variable for login page
+
+
+*** Variables ***
+${LOGIN PAGE}    http://localhost:7272/html
+
+
+*** Keywords ***
+Open login page
+	[Documentation]    Open Login Page2
+	Open Browser    ${LOGIN PAGE}
+	Maximize Browser Window
+
+Go to login page
+	Go to    ${LOGIN PAGE} 
+
+Submit
+	Click Button    login_button 

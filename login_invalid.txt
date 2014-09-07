@@ -1,0 +1,105 @@
+*** Settings ***
+Library          Selenium2Library
+Suite Setup      Open login page
+Test Setup       Go to login page
+Suite Teardown    Close Browser
+
+*** Variables ***
+${LOGIN PAGE}    http://localhost:7272/html
+${USERNAME}    demo
+${PASSWORD}    mode
+${EMTPY}
+${INCORRECT}    abc
+
+
+*** Testcases ***
+Invalid Login 1 No Username and Password
+ 	[Tags]    group1
+	Invalid1
+	Submit
+	Error page is shown
+
+Invalid Login 2 No Username and Valid Password
+    [Tags]    group1
+	Invalid2
+	Submit
+	Error page is shown
+
+Invalid Login 3 No Username and Invalid Password
+	Invalid3
+	Submit
+	Error page is shown
+
+Invalid Login 4 Valid Username and No Password
+	Invalid4
+	Submit
+	Error page is shown
+
+Invalid Login 5 Valid Username and Invalid Password 
+	Invalid5
+	Submit
+	Error page is shown
+
+Invalid Login 6 Invalid both Username and Password
+	Invalid6
+	Submit
+	Error page is shown
+
+Invalid Login 7 Invalid Username and No Password 
+	Invalid7
+	Submit
+	Error page is shown
+ 
+Invalid Login 8 No Username and Invalid Password
+	Invalid8
+	Submit
+	Error page is shown
+
+
+
+
+*** Keywords ***
+Open login page
+	Open Browser    ${LOGIN PAGE}
+	Maximize Browser Window
+
+Go to login page
+	Go to    ${LOGIN PAGE} 
+
+Invalid1
+	Input Text    username_field    ${EMTPY}
+	Input Text    password_field    ${EMTPY}
+
+Invalid2
+	Input Text    username_field    ${EMTPY}
+	Input Text    password_field    ${PASSWORD}
+
+Invalid3
+	Input Text    username_field    ${INCORRECT}
+	Input Text    password_field    ${PASSWORD}
+
+Invalid4
+	Input Text    username_field    ${USERNAME}
+	Input Text    password_field    ${EMTPY}
+
+Invalid5
+	Input Text    username_field    ${USERNAME}
+	Input Text    password_field    ${INCORRECT}
+
+Invalid6
+	Input Text    username_field    ${INCORRECT}
+	Input Text    password_field    ${INCORRECT}
+
+Invalid7
+	Input Text    username_field    ${INCORRECT}
+	Input Text    password_field    ${EMTPY}
+
+Invalid8
+	Input Text    username_field    ${EMTPY}
+	Input Text    password_field    ${INCORRECT}
+
+Submit
+	Click Button    login_button  
+
+Error page is shown
+	Element Should Contain    container    Error Page

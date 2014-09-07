@@ -1,0 +1,30 @@
+*** Settings ***
+Library    Selenium2Library
+
+
+*** Variables ***
+
+*** Testcases ***
+Test Result on Google
+	Open Browser to Google
+	Enter Keyword iPhone 6
+	Press Search
+	Maximize Window	
+
+
+*** Keywords ***
+
+Open Browser to Google
+	Open Browser    http://www.google.com
+
+
+Enter Keyword iPhone6
+	Input Text    gbqfq    riyah facebook
+
+Press Search
+	Click button    gbqfb
+	Wait Until Page Contains   Riyah
+	#//[@id="newsbox"]/div[1]/a/em
+
+Maximize Window
+	Maximize Browser Window

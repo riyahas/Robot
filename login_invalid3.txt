@@ -1,0 +1,34 @@
+*** Settings ***
+Library          Selenium2Library
+Test Setup       Open login page
+Test Teardown    Close Browser
+Resource		 resources/login.txt
+
+
+*** Testcases ***   
+Invalid Login
+	[Template]    Invalid login flow
+	#---Username---|----Password----|
+	${EMPTY}    ${EMPTY}
+	${EMPTY}	abc
+	demo		abc
+	demo		${EMPTY}  
+	${EMPTY}    mode
+	${EMPTY}	abc
+	abc			abc
+	abc			mode
+
+
+*** Keywords ***
+Invalid Login flow
+	[Arguments]				${username}    ${password}
+	Input Text    username_field    ${username} 
+	Input Text    password_field    ${password}
+	Submit
+	Error page is shown
+	Go to login page
+
+
+Error page is shown
+	Location Should Be    ${LOGIN PAGE}/error.html
+	Element Should Contain    container    Error Page

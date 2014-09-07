@@ -1,0 +1,24 @@
+*** Settings ***
+Library    Selenium2Library
+
+*** Variables ***
+
+*** Testcases ***
+
+Verifying Password for Security
+	Open Browser to Registration Form
+	Enter password
+	The green sign is shown
+	
+
+
+*** Keywords ***
+Open Browser to Registration Form
+	Open Browser    http://www.facebook.com
+
+Enter Password
+	Input Text    u_0_a    1234
+	Click Button    ลงทะเบียน
+
+The green sign is shown
+	Wait Until Page Contains    u_0_1
